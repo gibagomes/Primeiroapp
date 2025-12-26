@@ -2,6 +2,10 @@ const input = document.getElementById("tarefa");
 const botaoAdicionar = document.getElementById("adicionar");
 const lista = document.getElementById("lista");
 
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+
+mostrarTarefas();
+
 botaoAdicionar.addEventListener("click", adicionarTarefa);
 
 function adicionarTarefa() {
@@ -12,18 +16,34 @@ function adicionarTarefa() {
     return;
   }
 
-  const item = document.createElement("li");
-  item.textContent = texto;
-
-  const botaoRemover = document.createElement("button");
-  botaoRemover.textContent = "X";
-
-  botaoRemover.addEventListener("click", function () {
-    lista.removeChild(item);
-  });
-
-  item.appendChild(botaoRemover);
-  lista.appendChild(item);
+  tarefas.push(texto);
+  salvarTarefas();
+  mostrarTarefas();
 
   input.value = "";
+}
+
+function mostrarTarefas() {
+  lista.innerHTML = "";
+
+  tarefas.forEach((tarefa, index) => {
+    const item = document.createElement("li");
+    item.textContent = tarefa;
+
+    const botaoRemover = document.createElement("button");
+    botaoRemover.textContent = "X";
+
+    botaoRemover.addEventListener("click", function () {
+      tarefas.splice(index, 1);
+      salvarTarefas();
+      mostrarTarefas();
+    });
+
+    item.appendChild(botaoRemover);
+    lista.appendChild(item);
+  });
+}
+
+function salvarTarefas() {
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
