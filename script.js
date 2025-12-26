@@ -47,3 +47,6 @@ function mostrarTarefas() {
 function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
