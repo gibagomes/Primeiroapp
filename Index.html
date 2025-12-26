@@ -2,22 +2,30 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meu Primeiro App</title>
+  <title>Lista de Tarefas</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Conectando o CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Meu aplicativo organizado 🚀</h1>
+  <h1>Minha Lista de Tarefas</h1>
 
-  <button id="botao">
-    Clique aqui
-  </button>
+  <div class="container">
+    <input
+      type="text"
+      id="tarefa"
+      placeholder="Digite uma tarefa"
+    >
 
-  <!-- Conectando o JavaScript -->
+    <button id="adicionar">
+      Adicionar
+    </button>
+
+    <ul id="lista"></ul>
+  </div>
+
   <script src="script.js"></script>
 
 </body>
